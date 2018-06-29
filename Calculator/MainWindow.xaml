@@ -5,8 +5,72 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Calculator" Height="430" Width="380">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#f2f2f2" />
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+    </Window.Resources>
     <Grid>
         
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!-- Number buttons -->
+        <Button x:Name="btn7" Grid.Row="4" Grid.Column="0" FontWeight="SemiBold" Background="White">7</Button>
+        <Button x:Name="btn8" Grid.Row="4" Grid.Column="1" FontWeight="SemiBold" Background="White">8</Button>
+        <Button x:Name="btn9" Grid.Row="4" Grid.Column="2" FontWeight="SemiBold" Background="White">9</Button>
+        <Button x:Name="btn4" Grid.Row="5" Grid.Column="0" FontWeight="SemiBold" Background="White">4</Button>
+        <Button x:Name="btn5" Grid.Row="5" Grid.Column="1" FontWeight="SemiBold" Background="White">5</Button>
+        <Button x:Name="btn6" Grid.Row="5" Grid.Column="2" FontWeight="SemiBold" Background="White">6</Button>
+        <Button x:Name="btn1" Grid.Row="6" Grid.Column="0" FontWeight="SemiBold" Background="White">1</Button>
+        <Button x:Name="btn2" Grid.Row="6" Grid.Column="1" FontWeight="SemiBold" Background="White">2</Button>
+        <Button x:Name="btn3" Grid.Row="6" Grid.Column="2" FontWeight="SemiBold" Background="White">3</Button>
+        <Button x:Name="btn0" Grid.Row="7" Grid.Column="1" FontWeight="SemiBold" Background="White">0</Button>
+
+        <!-- Maths buttons -->
+        <Button x:Name="btnDivide" Grid.Row="3" Grid.Column="3">&#247;</Button>
+        <Button x:Name="btnMultiply" Grid.Row="4" Grid.Column="3">&#215;</Button>
+        <Button x:Name="btnMinus" Grid.Row="5" Grid.Column="3">-</Button>
+        <Button x:Name="btnPlus" Grid.Row="6" Grid.Column="3">+</Button>
+        <Button x:Name="btnEqual" Grid.Row="7" Grid.Column="3">=</Button>
+
+        <!-- Clear buttons -->
+        <Button x:Name="btnCE" Grid.Row="3" Grid.Column="0">CE</Button>
+        <Button x:Name="btnC" Grid.Row="3" Grid.Column="1">C</Button>
+        <Button x:Name="btnBackspace" Grid.Row="3" Grid.Column="2">&#9003;</Button>
+
+        <!-- +/- button -->
+        <Button x:Name="btnPlusMinus" Grid.Row="7" Grid.Column="0">&#177;</Button>
+
+        <!-- . button -->
+        <Button x:Name="btnDecimalPoint" Grid.Row="7" Grid.Column="2">.</Button>
+
+        <!-- Other operations -->
+        <Button x:Name="btnModulo" Grid.Row="2" Grid.Column="0">%</Button>
+        <Button x:Name="btnSqrt" Grid.Row="2" Grid.Column="1" Content="&#8730;"/>
+        <Button x:Name="btnSquare" Grid.Row="2" Grid.Column="2" Content="x&#178;"/>
+        <Button x:Name="btnReciprocal" Grid.Row="2" Grid.Column="3" Content="&#8543;x"/>
+
+        <!-- Command/result display -->
+        <TextBox IsReadOnly="True" TextAlignment="Right" Padding="0, 0, 10, 5" VerticalAlignment="Bottom" FontWeight="SemiBold" FontSize="45" BorderThickness="0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="2">0</TextBox>
     </Grid>
+    
 </Window>
