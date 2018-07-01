@@ -13,6 +13,7 @@
             <Setter Property="FontSize" Value="18" />
         </Style>
     </Window.Resources>
+
     <Grid>
         
         <Grid.ColumnDefinitions>
@@ -34,43 +35,56 @@
         </Grid.RowDefinitions>
 
         <!-- Number buttons -->
-        <Button x:Name="btn7" Grid.Row="4" Grid.Column="0" FontWeight="SemiBold" Background="White">7</Button>
-        <Button x:Name="btn8" Grid.Row="4" Grid.Column="1" FontWeight="SemiBold" Background="White">8</Button>
-        <Button x:Name="btn9" Grid.Row="4" Grid.Column="2" FontWeight="SemiBold" Background="White">9</Button>
-        <Button x:Name="btn4" Grid.Row="5" Grid.Column="0" FontWeight="SemiBold" Background="White">4</Button>
-        <Button x:Name="btn5" Grid.Row="5" Grid.Column="1" FontWeight="SemiBold" Background="White">5</Button>
-        <Button x:Name="btn6" Grid.Row="5" Grid.Column="2" FontWeight="SemiBold" Background="White">6</Button>
-        <Button x:Name="btn1" Grid.Row="6" Grid.Column="0" FontWeight="SemiBold" Background="White">1</Button>
-        <Button x:Name="btn2" Grid.Row="6" Grid.Column="1" FontWeight="SemiBold" Background="White">2</Button>
-        <Button x:Name="btn3" Grid.Row="6" Grid.Column="2" FontWeight="SemiBold" Background="White">3</Button>
-        <Button x:Name="btn0" Grid.Row="7" Grid.Column="1" FontWeight="SemiBold" Background="White">0</Button>
+        <Button x:Name="btn7" Grid.Row="4" Grid.Column="0" FontWeight="SemiBold" Background="White" Click="btnNumClick">7</Button>
+        <Button x:Name="btn8" Grid.Row="4" Grid.Column="1" FontWeight="SemiBold" Background="White" Click="btnNumClick">8</Button>
+        <Button x:Name="btn9" Grid.Row="4" Grid.Column="2" FontWeight="SemiBold" Background="White" Click="btnNumClick">9</Button>
+        <Button x:Name="btn4" Grid.Row="5" Grid.Column="0" FontWeight="SemiBold" Background="White" Click="btnNumClick">4</Button>
+        <Button x:Name="btn5" Grid.Row="5" Grid.Column="1" FontWeight="SemiBold" Background="White" Click="btnNumClick">5</Button>
+        <Button x:Name="btn6" Grid.Row="5" Grid.Column="2" FontWeight="SemiBold" Background="White" Click="btnNumClick">6</Button>
+        <Button x:Name="btn1" Grid.Row="6" Grid.Column="0" FontWeight="SemiBold" Background="White" Click="btnNumClick">1</Button>
+        <Button x:Name="btn2" Grid.Row="6" Grid.Column="1" FontWeight="SemiBold" Background="White" Click="btnNumClick">2</Button>
+        <Button x:Name="btn3" Grid.Row="6" Grid.Column="2" FontWeight="SemiBold" Background="White" Click="btnNumClick">3</Button>
+        <Button x:Name="btn0" Grid.Row="7" Grid.Column="1" FontWeight="SemiBold" Background="White" Click="btnNumClick">0</Button>
 
         <!-- Maths buttons -->
-        <Button x:Name="btnDivide" Grid.Row="3" Grid.Column="3">&#247;</Button>
-        <Button x:Name="btnMultiply" Grid.Row="4" Grid.Column="3">&#215;</Button>
-        <Button x:Name="btnMinus" Grid.Row="5" Grid.Column="3">-</Button>
-        <Button x:Name="btnPlus" Grid.Row="6" Grid.Column="3">+</Button>
-        <Button x:Name="btnEqual" Grid.Row="7" Grid.Column="3">=</Button>
+        <Button x:Name="btnDivide" Grid.Row="3" Grid.Column="3" Click="btnDivideClick">&#247;</Button>
+        <Button x:Name="btnMultiply" Grid.Row="4" Grid.Column="3" Click="btnMultiplyClick">&#215;</Button>
+        <Button x:Name="btnMinus" Grid.Row="5" Grid.Column="3" Click="btnMinusClick">-</Button>
+        <Button x:Name="btnPlus" Grid.Row="6" Grid.Column="3" Click="btnPlusClick">+</Button>
+        <Button x:Name="btnEquals" Grid.Row="7" Grid.Column="3" Click="btnEqualsClick">=</Button>
 
         <!-- Clear buttons -->
-        <Button x:Name="btnCE" Grid.Row="3" Grid.Column="0">CE</Button>
-        <Button x:Name="btnC" Grid.Row="3" Grid.Column="1">C</Button>
-        <Button x:Name="btnBackspace" Grid.Row="3" Grid.Column="2">&#9003;</Button>
+        <Button x:Name="btnCE" Grid.Row="3" Grid.Column="0" Click="btnCEClick">CE</Button>
+        <Button x:Name="btnC" Grid.Row="3" Grid.Column="1"  Click="btnCClick">C</Button>
+        <Button x:Name="btnBackspace" Grid.Row="3" Grid.Column="2" Click="btnBackspaceClick">&#9003;</Button>
 
         <!-- +/- button -->
-        <Button x:Name="btnPlusMinus" Grid.Row="7" Grid.Column="0">&#177;</Button>
+        <Button x:Name="btnPlusMinus" Grid.Row="7" Grid.Column="0" Click="btnPlusMinusClick">&#177;</Button>
 
         <!-- . button -->
-        <Button x:Name="btnDecimalPoint" Grid.Row="7" Grid.Column="2">.</Button>
+        <Button x:Name="btnDecimalPoint" Grid.Row="7" Grid.Column="2" Click="btnDecimalPointClick">.</Button>
 
         <!-- Other operations -->
-        <Button x:Name="btnModulo" Grid.Row="2" Grid.Column="0">%</Button>
-        <Button x:Name="btnSqrt" Grid.Row="2" Grid.Column="1" Content="&#8730;"/>
-        <Button x:Name="btnSquare" Grid.Row="2" Grid.Column="2" Content="x&#178;"/>
-        <Button x:Name="btnReciprocal" Grid.Row="2" Grid.Column="3" Content="&#8543;x"/>
+        <Button x:Name="btnMemClear" Grid.Row="2" Grid.Column="0" Click="btnMemClearClick">MC</Button>
+        <Button x:Name="btnMemRecall" Grid.Row="2" Grid.Column="1" Click="btnMemRecallClick">MR</Button>
+        <Button x:Name="btnMemSave" Grid.Row="2" Grid.Column="2" Click="btnMemSaveClick">MS</Button>
+        <Button x:Name="btnHistory" Grid.Row="2" Grid.Column="3" Click="btnHistoryClick">History</Button>
 
         <!-- Command/result display -->
-        <TextBox IsReadOnly="True" TextAlignment="Right" Padding="0, 0, 10, 5" VerticalAlignment="Bottom" FontWeight="SemiBold" FontSize="45" BorderThickness="0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="2">0</TextBox>
+        <TextBlock x:Name="txtDisplay" TextAlignment="Right"
+                 Padding="0, 0, 10, 5" VerticalAlignment="Bottom"
+                 FontWeight="SemiBold" FontSize="45"
+                  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="2"
+                 >0</TextBlock>
+
+        <ScrollViewer x:Name="historyScrollDisplay"
+             Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="5" Background="White"
+             VerticalScrollBarVisibility="Auto" Visibility="Collapsed">
+            <TextBlock x:Name="txtHistory" TextAlignment="Right"
+                 Padding="0, 0, 10, 5" VerticalAlignment="Top"
+                 FontWeight="SemiBold" FontSize="22" 
+                 >0</TextBlock>
+        </ScrollViewer>              
     </Grid>
     
 </Window>
