@@ -1,0 +1,91 @@
+﻿<Window x:Class="Calculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculator"
+        mc:Ignorable="d"
+        Title="Calculator" Height="430" Width="380">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#f2f2f2" />
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!-- Number buttons -->
+        <Button Grid.Row="4" Grid.Column="0" FontWeight="SemiBold" Background="White" CommandParameter="7" Command="{Binding NumClickCommand}">7</Button>
+        <Button Grid.Row="4" Grid.Column="1" FontWeight="SemiBold" Background="White" CommandParameter="8" Command="{Binding NumClickCommand}">8</Button>
+        <Button Grid.Row="4" Grid.Column="2" FontWeight="SemiBold" Background="White" CommandParameter="9" Command="{Binding NumClickCommand}">9</Button>
+        <Button Grid.Row="5" Grid.Column="0" FontWeight="SemiBold" Background="White" CommandParameter="4" Command="{Binding NumClickCommand}">4</Button>
+        <Button Grid.Row="5" Grid.Column="1" FontWeight="SemiBold" Background="White" CommandParameter="5" Command="{Binding NumClickCommand}">5</Button>
+        <Button Grid.Row="5" Grid.Column="2" FontWeight="SemiBold" Background="White" CommandParameter="6" Command="{Binding NumClickCommand}">6</Button>
+        <Button Grid.Row="6" Grid.Column="0" FontWeight="SemiBold" Background="White" CommandParameter="1" Command="{Binding NumClickCommand}">1</Button>
+        <Button Grid.Row="6" Grid.Column="1" FontWeight="SemiBold" Background="White" CommandParameter="2" Command="{Binding NumClickCommand}">2</Button>
+        <Button Grid.Row="6" Grid.Column="2" FontWeight="SemiBold" Background="White" CommandParameter="3" Command="{Binding NumClickCommand}">3</Button>
+        <Button Grid.Row="7" Grid.Column="1" FontWeight="SemiBold" Background="White" CommandParameter="0" Command="{Binding NumClickCommand}">0</Button>
+
+        <!-- Maths buttons -->
+        <Button Grid.Row="3" Grid.Column="3" Command="{Binding DivideClickCommand}">&#247;</Button>
+        <Button Grid.Row="4" Grid.Column="3" Command="{Binding MultiplyClickCommand}">&#215;</Button>
+        <Button Grid.Row="5" Grid.Column="3" Command="{Binding MinusClickCommand}">-</Button>
+        <Button Grid.Row="6" Grid.Column="3" Command="{Binding PlusClickCommand}">+</Button>
+        <Button Grid.Row="7" Grid.Column="3" Command="{Binding EqualsClickCommand}">=</Button>
+
+        <!-- Clear buttons -->
+        <Button Grid.Row="3" Grid.Column="0" Command="{Binding CEClickCommand}">CE</Button>
+        <Button Grid.Row="3" Grid.Column="1"  Command="{Binding CClickCommand}">C</Button>
+        <Button Grid.Row="3" Grid.Column="2" Command="{Binding BackspaceClickCommand}">&#9003;</Button>
+
+        <!-- +/- button -->
+        <Button Grid.Row="7" Grid.Column="0" Command="{Binding PlusMinusClickCommand}">&#177;</Button>
+
+        <!-- . button -->
+        <Button Grid.Row="7" Grid.Column="2" Command="{Binding DecimalPointClickCommand}">.</Button>
+
+        <!-- Other operations -->
+        <Button Grid.Row="2" Grid.Column="0" Command="{Binding MemClearClickCommand}">MC</Button>
+        <Button Grid.Row="2" Grid.Column="1" Command="{Binding MemRecallClickCommand}">MR</Button>
+        <Button Grid.Row="2" Grid.Column="2" Command="{Binding MemSaveClickCommand}">MS</Button>
+        <Button Grid.Row="2" Grid.Column="3" Command="{Binding HistoryClickCommand}">History</Button>
+
+        <!-- Command/result display -->
+        <TextBlock Text ="{Binding DisplayText, Mode=TwoWay}" TextAlignment="Right"
+                 Padding="0, 0, 10, 5" VerticalAlignment="Bottom"
+                 FontWeight="SemiBold" FontSize="45"
+                  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="2"
+                 >0</TextBlock>
+
+        <ScrollViewer 
+             Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="5" Background="White"
+             VerticalScrollBarVisibility="Auto" Visibility="{Binding Path=ViewingHistory, Converter={StaticResource BoolToVis}}">
+            <TextBlock Text ="{Binding HistoryText, Mode=TwoWay}" TextAlignment="Right"
+                 Padding="0, 0, 10, 5" VerticalAlignment="Top"
+                 FontWeight="SemiBold" FontSize="22" 
+                 >0</TextBlock>
+        </ScrollViewer>              
+    </Grid>
+    
+</Window>
