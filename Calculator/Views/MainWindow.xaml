@@ -56,7 +56,7 @@
 
         <!-- Clear buttons -->
         <Button Grid.Row="3" Grid.Column="0" Command="{Binding CEClickCommand}">CE</Button>
-        <Button Grid.Row="3" Grid.Column="1"  Command="{Binding CClickCommand}">C</Button>
+        <Button Grid.Row="3" Grid.Column="1"  Command="{Binding ClearAllClickCommand}">C</Button>
         <Button Grid.Row="3" Grid.Column="2" Command="{Binding BackspaceClickCommand}">&#9003;</Button>
 
         <!-- +/- button -->

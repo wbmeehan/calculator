@@ -31,7 +31,7 @@ namespace Calculator.ViewModels
         /* Click commands */
         private ICommand _numClickCommand;
         private ICommand _backspaceClickCommand;
-        private ICommand _clearEntryClickCommand;
+        private ICommand _ceClickCommand;
         private ICommand _clearAllClickCommand;
         private ICommand _plusClickCommand;
         private ICommand _minusClickCommand;
@@ -223,12 +223,12 @@ namespace Calculator.ViewModels
         {
             get
             {
-                if (_clearEntryClickCommand == null)
+                if (_ceClickCommand == null)
                 {
-                    _clearEntryClickCommand = new RelayCommand(CEClick);
+                    _ceClickCommand = new RelayCommand(CEClick);
 
                 }
-                return _clearEntryClickCommand;
+                return _ceClickCommand;
             }
         }
 
@@ -462,6 +462,7 @@ namespace Calculator.ViewModels
             FirstOperand = 0;
             SecondOperand = 0;
             DisplayNumberHasDecimalPoint = false;
+            EnterMode(Default);
 
             RefreshDisplay();
         }
