@@ -10,15 +10,14 @@ using MvvmFoundation.Wpf;
 
 namespace Calculator.ViewModels
 {
+    /// <summary>
+    /// Calculator view model.
+    /// </summary>
     public class MainWindowViewModel : ObservableObject
     {
-
         #region Fields
 
-        // Model
-        private MainWindowModel _calculatorModel = new MainWindowModel();
-
-        // Operation modes
+        /* Operation modes */
         private const int Default = 0;
         private const int Add = 1;
         private const int Subtract = 2;
@@ -26,10 +25,14 @@ namespace Calculator.ViewModels
         private const int Divide = 4;
         private const int Equal = 5;
 
+        /* Calculation model */
+        private MainWindowModel _calculatorModel = new MainWindowModel();
+
+        /* Click commands */
         private ICommand _numClickCommand;
         private ICommand _backspaceClickCommand;
-        private ICommand _ceClickCommand;
-        private ICommand _cClickCommand;
+        private ICommand _clearEntryClickCommand;
+        private ICommand _clearAllClickCommand;
         private ICommand _plusClickCommand;
         private ICommand _minusClickCommand;
         private ICommand _multiplyClickCommand;
@@ -46,16 +49,21 @@ namespace Calculator.ViewModels
 
         #region Public Properties/Commands
 
+        /* Is the calculation history being viewed? */
         public bool ViewingHistory { get; set; }
+        /* Result text */
         public string DisplayText { get; set; }
+        /* History text */
         public string HistoryText { get; set; }
 
+        #region Calculator model variables
         public double SavedNumber
         {
             get
             {
                 return _calculatorModel.SavedNumber;
             }
+
             set
             {
                 _calculatorModel.SavedNumber = value;
@@ -68,17 +76,20 @@ namespace Calculator.ViewModels
             {
                 return _calculatorModel.NumberIsSaved;
             }
+
             set
             {
                 _calculatorModel.NumberIsSaved = value;
             }
         }
+
         public bool DisplayNumberHasDecimalPoint
         {
             get
             {
                 return _calculatorModel.DisplayNumberHasDecimalPoint;
             }
+
             set
             {
                 _calculatorModel.DisplayNumberHasDecimalPoint = value;
@@ -86,34 +97,39 @@ namespace Calculator.ViewModels
             }
         }
 
-
         public int CurrentMode
         {
             get
             {
                 return _calculatorModel.CurrentMode;
             }
+
             set
             {
                 _calculatorModel.CurrentMode = value;
             }
         }
+
         public int PreviousMode
         {
             get
             {
                 return _calculatorModel.PreviousMode;
             }
+
             set
             {
                 _calculatorModel.PreviousMode = value;
             }
         }
-        public double FirstOperand {
+
+        public double FirstOperand
+        {
             get
             {
                 return _calculatorModel.FirstOperand;
             }
+
             set
             {
                 _calculatorModel.FirstOperand = value;
@@ -126,6 +142,7 @@ namespace Calculator.ViewModels
             {
                 return _calculatorModel.SecondOperand;
             }
+
             set
             {
                 _calculatorModel.SecondOperand = value;
@@ -138,13 +155,12 @@ namespace Calculator.ViewModels
             {
                 return _calculatorModel.DisplayNumber;
             }
+
             set
             {
                 _calculatorModel.DisplayNumber = value;
             }
         }
-
-  
 
         public int NumFractionalDigits
         {
@@ -152,6 +168,7 @@ namespace Calculator.ViewModels
             {
                 return _calculatorModel.NumFractionalDigits;
             }
+
             set
             {
                 if (value >= 0)
@@ -165,24 +182,30 @@ namespace Calculator.ViewModels
             }
         }
 
-        public StringBuilder operationsHistory
+        public StringBuilder OperationsHistory
         {
             get
             {
                 return _calculatorModel.OperationsHistory;
             }
         }
+        #endregion
 
-   
-        public ICommand NumClickCommand {
-            get {
+        #region Button click commands
+        public ICommand NumClickCommand
+        {
+            get
+            {
                 if (_numClickCommand == null)
                 {
                     _numClickCommand = new RelayCommand<string>(NumClick);
+
                 }
                 return _numClickCommand;
             }
+
         }
+
         public ICommand BackspaceClickCommand
         {
             get
@@ -190,6 +213,7 @@ namespace Calculator.ViewModels
                 if (_backspaceClickCommand == null)
                 {
                     _backspaceClickCommand = new RelayCommand(BackspaceClick);
+
                 }
                 return _backspaceClickCommand;
             }
@@ -199,23 +223,25 @@ namespace Calculator.ViewModels
         {
             get
             {
-                if (_ceClickCommand == null)
+                if (_clearEntryClickCommand == null)
                 {
-                    _ceClickCommand = new RelayCommand(CEClick);
+                    _clearEntryClickCommand = new RelayCommand(CEClick);
+
                 }
-                return _ceClickCommand;
+                return _clearEntryClickCommand;
             }
         }
 
-        public ICommand CClickCommand
+        public ICommand ClearAllClickCommand
         {
             get
             {
-                if (_cClickCommand == null)
+                if (_clearAllClickCommand == null)
                 {
-                    _cClickCommand = new RelayCommand(CClick);
+                    _clearAllClickCommand = new RelayCommand(CClick);
+
                 }
-                return _cClickCommand;
+                return _clearAllClickCommand;
             }
         }
 
@@ -226,6 +252,7 @@ namespace Calculator.ViewModels
                 if (_plusClickCommand == null)
                 {
                     _plusClickCommand = new RelayCommand(PlusClick);
+
                 }
                 return _plusClickCommand;
             }
@@ -251,6 +278,7 @@ namespace Calculator.ViewModels
                 {
                     _multiplyClickCommand = new RelayCommand(MultiplyClick);
                 }
+
                 return _multiplyClickCommand;
             }
         }
@@ -263,6 +291,7 @@ namespace Calculator.ViewModels
                 {
                     _divideClickCommand = new RelayCommand(DivideClick);
                 }
+
                 return _divideClickCommand;
             }
         }
@@ -275,6 +304,7 @@ namespace Calculator.ViewModels
                 {
                     _equalsClickCommand = new RelayCommand(EqualsClick);
                 }
+
                 return _equalsClickCommand;
             }
         }
@@ -287,9 +317,11 @@ namespace Calculator.ViewModels
                 {
                     _plusMinusClickCommand = new RelayCommand(PlusMinusClick);
                 }
+
                 return _plusMinusClickCommand;
             }
         }
+
         public ICommand DecimalPointClickCommand
         {
             get
@@ -298,6 +330,7 @@ namespace Calculator.ViewModels
                 {
                     _decimalPointClickCommand = new RelayCommand(DecimalPointClick);
                 }
+
                 return _decimalPointClickCommand;
             }
         }
@@ -310,6 +343,7 @@ namespace Calculator.ViewModels
                 {
                     _memSaveClickCommand = new RelayCommand(MemSaveClick);
                 }
+
                 return _memSaveClickCommand;
             }
         }
@@ -322,9 +356,11 @@ namespace Calculator.ViewModels
                 {
                     _memClearClickCommand = new RelayCommand(MemClearClick);
                 }
+
                 return _memClearClickCommand;
             }
         }
+
         public ICommand MemRecallClickCommand
         {
             get
@@ -333,6 +369,7 @@ namespace Calculator.ViewModels
                 {
                     _memRecallClickCommand = new RelayCommand(MemRecallClick);
                 }
+
                 return _memRecallClickCommand;
             }
         }
@@ -345,15 +382,20 @@ namespace Calculator.ViewModels
                 {
                     _historyClickCommand = new RelayCommand(HistoryClick);
                 }
+
                 return _historyClickCommand;
             }
         }
-
+        #endregion
 
         #endregion // Properties
 
         #region Private Helpers
 
+        /// <summary>
+        /// Append clicked number to end of displayed number.
+        /// </summary>
+        /// <param name="buttonValue">The value of the number clicked.</param>
         private void NumClick(string buttonValue)
         {
             if (CurrentMode == Equal)
@@ -370,14 +412,16 @@ namespace Calculator.ViewModels
             else
             {
                 NumFractionalDigits++;
-                SecondOperand += int.Parse(buttonValue) / (Math.Pow(10, NumFractionalDigits));
+                SecondOperand += int.Parse(buttonValue) / Math.Pow(10, NumFractionalDigits);
                 DisplayNumber = SecondOperand;
             }
-
 
             RefreshDisplay();
         }
 
+        /// <summary>
+        /// Perform backspace.
+        /// </summary>
         private void BackspaceClick()
         {
             if (!DisplayNumberHasDecimalPoint)
@@ -397,6 +441,9 @@ namespace Calculator.ViewModels
             RefreshDisplay();
         }
 
+        /// <summary>
+        /// Clear entry.
+        /// </summary>
         private void CEClick()
         {
             DisplayNumber = 0;
@@ -406,6 +453,9 @@ namespace Calculator.ViewModels
             RefreshDisplay();
         }
 
+        /// <summary>
+        /// Clear all.
+        /// </summary>
         private void CClick()
         {
             DisplayNumber = 0;
@@ -416,37 +466,54 @@ namespace Calculator.ViewModels
             RefreshDisplay();
         }
 
-
+        /// <summary>
+        /// Queue addition.
+        /// </summary>
         private void PlusClick()
         {
             EnterMode(Add);
             ProcessOperation();
         }
 
+        /// <summary>
+        /// Queue subtraction.
+        /// </summary>
         private void MinusClick()
         {
             EnterMode(Subtract);
             ProcessOperation();
         }
 
+        /// <summary>
+        /// Queue multiplication.
+        /// </summary>
         private void MultiplyClick()
         {
             EnterMode(Multiply);
             ProcessOperation();
         }
 
+        /// <summary>
+        /// Queue division.
+        /// </summary>
         private void DivideClick()
         {
             EnterMode(Divide);
             ProcessOperation();
         }
 
+        /// <summary>
+        /// Perform equals.
+        /// </summary>
         private void EqualsClick()
         {
             EnterMode(Equal);
             ProcessOperation();
         }
 
+        /// <summary>
+        /// Change sign of displayed result.
+        /// </summary>
         private void PlusMinusClick()
         {
             if (CurrentMode == Equal)
@@ -463,9 +530,11 @@ namespace Calculator.ViewModels
             RefreshDisplay();
         }
 
+        /// <summary>
+        /// Append decimal point to displayed number.
+        /// </summary>
         private void DecimalPointClick()
         {
-
             if (CurrentMode == Equal)
             {
                 EnterMode(Default);
@@ -481,12 +550,18 @@ namespace Calculator.ViewModels
             RefreshDisplay();
         }
 
+        /// <summary>
+        /// Save displayed number into memory.
+        /// </summary>
         private void MemSaveClick()
         {
             SavedNumber = DisplayNumber;
             NumberIsSaved = true;
         }
 
+        /// <summary>
+        /// Recall result stored in memory.
+        /// </summary>
         private void MemRecallClick()
         {
             if (NumberIsSaved == false)
@@ -508,16 +583,22 @@ namespace Calculator.ViewModels
             RefreshDisplay();
         }
 
+        /// <summary>
+        /// Clear result saved in memory.
+        /// </summary>
         private void MemClearClick()
         {
             NumberIsSaved = false;
         }
 
+        /// <summary>
+        /// Display calculator history.
+        /// </summary>
         private void HistoryClick()
         {
             if (!ViewingHistory)
             {
-                HistoryText = operationsHistory.ToString().TrimEnd('\n');
+                HistoryText = OperationsHistory.ToString().TrimEnd('\n');
                 ViewingHistory = true;
             }
             else
@@ -525,22 +606,25 @@ namespace Calculator.ViewModels
                 ViewingHistory = false;
             }
         }
-
+        
+        /// <summary>
+        /// Process +,-,*,/,= operations.
+        /// </summary>
         private void ProcessOperation()
         {
             switch (PreviousMode)
             {
                 case Add:
-                    _calculatorModel.ProcessAddition();
+                    _calculatorModel.Addition();
                     break;
                 case Subtract:
-                    _calculatorModel.ProcessSubtraction();
+                    _calculatorModel.Subtraction();
                     break;
                 case Divide:
-                    _calculatorModel.ProcessDivision();
+                    _calculatorModel.Division();
                     break;
                 case Multiply:
-                    _calculatorModel.ProcessMultiplication();
+                    _calculatorModel.Multiplication();
                     break;
                 case Equal:
                     break;
@@ -554,18 +638,24 @@ namespace Calculator.ViewModels
             RefreshDisplay();
         }
    
-
+        /// <summary>
+        /// Enter new mode.
+        /// </summary>
+        /// <param name="newMode">New mode.</param>
         private void EnterMode(int newMode)
         {
             PreviousMode = CurrentMode;
             CurrentMode = newMode;
         }
 
+        /// <summary>
+        /// Refresh displayed calculator result.
+        /// </summary>
         private void RefreshDisplay()
         {
             if (!DisplayNumberHasDecimalPoint)
             {
-                DisplayText = String.Format("{0}", DisplayNumber);
+                DisplayText = string.Format("{0}", DisplayNumber);
             }
             else
             {
@@ -574,8 +664,9 @@ namespace Calculator.ViewModels
                 {
                     fmt += "0";
                 }
+
                 fmt += "}";
-                DisplayText = String.Format(fmt, DisplayNumber);
+                DisplayText = string.Format(fmt, DisplayNumber);
                 if (NumFractionalDigits == 0)
                 {
                     DisplayText += ".";
@@ -584,6 +675,5 @@ namespace Calculator.ViewModels
         }
 
         #endregion
-
     }
 }
